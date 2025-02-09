@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './index.scss'
 import { Formik } from 'formik';
 import validation from './validation'
+import { Link } from 'react-router-dom';
 export default function Signup({
     handleFormSubmit
 }) {
@@ -16,7 +17,7 @@ export default function Signup({
     return <>
         <Formik
             initialValues={{ ...initialValues }}
-            validationSchema={validation}
+            validationSchema={validation()}
             onSubmit={(values) => {
                 handleFormSubmit(values)
                 console.log(values, 'values')
@@ -40,7 +41,7 @@ export default function Signup({
 
                             <div className='signup_container_main'>
                                 <br />
-                                <div className='input-form'>
+                                <div className='signup-input-form'>
                                     <div>
                                         <label>Name</label>
                                     </div>
@@ -55,10 +56,9 @@ export default function Signup({
                                     </div>
                                     <div style={{
                                         color: 'red',
-                                        marginBottom: '5px'
                                     }}>{errors.name && touched.name && errors.name}</div>
                                 </div>
-                                <div className='input-form'>
+                                <div className='signup-input-form'>
                                     <div>
                                         <label>User Name</label>
                                     </div>
@@ -76,7 +76,7 @@ export default function Signup({
                                         marginBottom: '5px'
                                     }}>{errors.userName && touched.userName && errors.userName}</div>
                                 </div>
-                                <div className='input-form'>
+                                <div className='signup-input-form'>
                                     <div>
                                         <label>Email</label>
                                     </div>
@@ -94,19 +94,22 @@ export default function Signup({
                                         marginBottom: '5px'
                                     }}>{errors.email && touched.email && errors.email}</div>
                                 </div>
-                                <div className='input-form'>
+                                <div className='signup-input-form'>
                                     <div>
                                         <label>Select Role</label>
                                     </div>
+                                    {console.log(values.role, 'values.role')}
                                     <div>
                                         <select
+                                            type="text"
                                             name='role'
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.role}
                                         >
-                                            <option key="doctor"> Doctor</option>
-                                            <option key="patient"> Patient</option>
+                                            <option key="select role"> Select Role</option>
+                                            <option >doctor</option>
+                                            <option >patient</option>
                                         </select>
                                     </div>
                                     <div style={{
@@ -114,7 +117,7 @@ export default function Signup({
                                         marginBottom: '5px'
                                     }}>{errors.role && touched.role && errors.role}</div>
                                 </div>
-                                <div className='input-form'>
+                                <div className='signup-input-form'>
                                     <div>
                                         <label>Password</label>
                                     </div>
@@ -141,6 +144,9 @@ export default function Signup({
                                 </div>
                             </div>
                             <div className='signup_container_footer'>
+                                <div>
+                                    <Link to='/login'>Already have an account</Link>
+                                </div>
                                 <div>
                                     <button type='submit'>
                                         Submit

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './index.scss'
 import { Formik } from 'formik';
 import validation from './validation'
+import { Link } from 'react-router-dom';
 export default function Login({
     handleFormSubmit
 }) {
@@ -81,6 +82,9 @@ export default function Login({
                                 </div>
                             </div>
                             <div className='login_container_footer'>
+                                <div>
+                                    <Link to="/signup">Don't have an account login.</Link>
+                                </div>
                                 <div>
                                     <button type='submit'>
                                         Submit
